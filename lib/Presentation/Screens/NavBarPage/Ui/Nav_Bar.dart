@@ -1,5 +1,6 @@
 // ignore: file_names
 // ignore: file_names
+// ignore: file_names
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

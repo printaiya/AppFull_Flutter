@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import 'Presentation/Screens/Splash_Page/Splash_Screen.dart';
-import 'Routes/routes_generator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +33,6 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      initialRoute: "/",
-      onGenerateRoute: RouteGenerator().generateRoute,
       home: const SplashScreen(),
     );
   }

@@ -1,10 +1,11 @@
 // ignore: file_names
 // ignore: file_names
 // ignore: file_names
+// ignore: file_names
 import 'package:flutter/cupertino.dart';
 
 import '../../LikePage/Ui/Like_page.dart';
-import '../../ProfilePage/Ui/Profile_Screen.dart';
+import '../../ProfilePage/Profile_Screen.dart';
 import '../../QrPage/Qr_Screen.dart';
 
 Widget getSelectedWidget({required int index}) {
@@ -23,7 +24,7 @@ Widget getSelectedWidget({required int index}) {
       break;
 
     default:
-      widget = SettingsUI();
+      widget = const SettingsUI();
       break;
   }
   return widget;

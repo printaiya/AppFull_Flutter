@@ -17,8 +17,6 @@ class SettingsUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Setting UI",
-      home: EditProfilePage(),
     );
   }
 }
@@ -54,7 +52,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsPage()));
+                  builder: (BuildContext context) => const SettingsPage()));
             },
           ),
         ],

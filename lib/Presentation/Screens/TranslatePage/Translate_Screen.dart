@@ -2,7 +2,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Presentation/Screens/LoginPage/UI/login_page.dart';
+import 'package:flutter_project/Presentation/Screens/LoginPage/login_page.dart';
 
 // ignore: camel_case_types
 class Translate_Screen extends StatefulWidget {
@@ -60,7 +60,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -73,7 +73,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -86,7 +86,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
             style: ElevatedButton.styleFrom(

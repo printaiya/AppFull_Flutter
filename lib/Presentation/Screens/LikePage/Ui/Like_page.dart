@@ -6,9 +6,11 @@
 // ignore: file_names
 // ignore_for_file: file_names, duplicate_ignore
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../translations/locale_keys.g.dart';
 import '../Widjets/page1.dart';
 import '../Widjets/page2.dart';
 import '../Widjets/page3.dart';
@@ -25,7 +27,7 @@ class Likes_Screen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff065D58),
-        title: const Text("News Portal"),
+        title: Text(LocaleKeys.news.tr()),
       ),
       backgroundColor: const Color(0xffcae0df),
       body: Column(

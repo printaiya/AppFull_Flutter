@@ -1,10 +1,14 @@
 // ignore: file_names
+// ignore: file_names
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../../translations/locale_keys.g.dart';
 
 class QrScan extends StatefulWidget {
   const QrScan({Key? key}) : super(key: key);
@@ -16,7 +20,7 @@ class QrScan extends StatefulWidget {
 class _QrScanState extends State<QrScan> {
   Barcode? result;
   QRViewController? controller;
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  final GlobalKey qrKey = GlobalKey(debugLabel: LocaleKeys.scan.tr());
 
   bool flash = false;
 

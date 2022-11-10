@@ -3,22 +3,15 @@ import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
+import '../../resources/auth_repository.dart';
+
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) async {
-      if (event is Login) {
-        if (event.userName.isEmpty || event.password.isEmpty) {
-          emit(AuthError());
-        } else {
-          emit(AuthLoading());
-          await Future.delayed(const Duration(seconds: 3), () {
-            emit(AuthLoaded(event.userName));
-          });
-        }
-      }
-    });
+class AuthBlocBloc extends Bloc<AuthEvent, AuthState> {
+  final _repository = AuthRepository();
+  AuthBlocBloc() : super(AuthInitial()) {
+    on<AuthEvent>((event, emit) => emit(AuthInitial()));
+    on<GetAuthEvent>(_repository.onGetAuthEvent);
   }
 }
