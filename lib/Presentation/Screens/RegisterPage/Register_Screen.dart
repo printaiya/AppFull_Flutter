@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class Register_Screen extends StatefulWidget {
   const Register_Screen({super.key});
 
@@ -9,6 +10,7 @@ class Register_Screen extends StatefulWidget {
   _Register_ScreenState createState() => _Register_ScreenState();
 }
 
+// ignore: camel_case_types
 class _Register_ScreenState extends State<Register_Screen> {
   bool showPassword = false;
   @override
@@ -66,11 +68,11 @@ class _Register_ScreenState extends State<Register_Screen> {
               ],
             ),
             child: const TextField(
-              cursorColor: Color(0xff007A53),
+              cursorColor: Color(0xff036B56),
               decoration: InputDecoration(
                 icon: Icon(
                   Icons.person,
-                  color: Color(0xff007A53),
+                  color: Color(0xff036B56),
                 ),
                 hintText: "Введите имя",
                 enabledBorder: InputBorder.none,
@@ -96,11 +98,11 @@ class _Register_ScreenState extends State<Register_Screen> {
             ),
             // ignore: prefer_const_constructors
             child: TextField(
-              cursorColor: const Color(0xff007A53),
+              cursorColor: const Color(0xff036B56),
               decoration: const InputDecoration(
                 icon: Icon(
                   Icons.email,
-                  color: Color(0xff007A53),
+                  color: Color(0xff036B56),
                 ),
                 hintText: "Введите емайл",
                 enabledBorder: InputBorder.none,
@@ -125,12 +127,12 @@ class _Register_ScreenState extends State<Register_Screen> {
               ],
             ),
             child: const TextField(
-              cursorColor: Color(0xff007A53),
+              cursorColor: Color(0xff036B56),
               decoration: InputDecoration(
-                focusColor: Color(0xff007A53),
+                focusColor: Color(0xff036B56),
                 icon: Icon(
                   Icons.call_to_action,
-                  color: Color(0xff007A53),
+                  color: Color(0xff036B56),
                 ),
                 hintText: "Введите номер",
                 enabledBorder: InputBorder.none,
@@ -155,12 +157,12 @@ class _Register_ScreenState extends State<Register_Screen> {
               ],
             ),
             child: const TextField(
-              cursorColor: Color(0xff007A53),
+              cursorColor: Color(0xff036B56),
               decoration: InputDecoration(
-                focusColor: Color(0xff007A53),
+                focusColor: Color(0xff036B56),
                 icon: Icon(
                   Icons.vpn_key,
-                  color: Color(0xff007A53),
+                  color: Color(0xff036B56),
                 ),
                 hintText: "Введите пароль",
                 enabledBorder: InputBorder.none,
@@ -185,12 +187,12 @@ class _Register_ScreenState extends State<Register_Screen> {
               ],
             ),
             child: const TextField(
-              cursorColor: Color(0xff007A53),
+              cursorColor: Color(0xff036B56),
               decoration: InputDecoration(
-                focusColor: Color(0xff007A53),
+                focusColor: Color(0xff036B56),
                 icon: Icon(
                   Icons.vpn_key,
-                  color: Color(0xff007A53),
+                  color: Color(0xff036B56),
                 ),
                 hintText: "Повторите пароль",
                 enabledBorder: InputBorder.none,

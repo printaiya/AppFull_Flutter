@@ -26,7 +26,7 @@ class _NavBar_Screen extends State<NavBar_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff065D58),
+        backgroundColor: const Color(0xff036B56),
         bottomNavigationBar: CurvedNavigationBar(
           items: items,
           index: index,
@@ -36,7 +36,7 @@ class _NavBar_Screen extends State<NavBar_Screen> {
             });
           },
           height: 70,
-          backgroundColor: const Color(0xff065D58),
+          backgroundColor: const Color(0xff036B56),
           animationDuration: const Duration(milliseconds: 300),
         ),
         body: Container(

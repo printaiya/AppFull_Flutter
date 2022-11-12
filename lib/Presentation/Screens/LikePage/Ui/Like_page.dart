@@ -26,10 +26,10 @@ class Likes_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff065D58),
+        backgroundColor: const Color(0xff036B56),
         title: Text(LocaleKeys.news.tr()),
       ),
-      backgroundColor: const Color(0xffcae0df),
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -52,7 +52,7 @@ class Likes_Screen extends StatelessWidget {
             controller: _controller,
             count: 4,
             effect: const JumpingDotEffect(
-              activeDotColor: Color(0xff06635c),
+              activeDotColor: Color(0xff036B56),
               dotColor: Color(0xff679c98),
               dotHeight: 20,
               dotWidth: 20,

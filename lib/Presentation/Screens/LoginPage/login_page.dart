@@ -50,19 +50,19 @@ class _LoginPageState extends State<LoginPage> {
             ),
             buildAuthBlocListener(),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             buildTextFormFiled(),
             const SizedBox(
-              height: 35,
+              height: 25,
             ),
             buildInputFiled(),
             const SizedBox(
-              height: 35,
+              height: 25,
             ),
             buildButton(),
             const SizedBox(
-              height: 35,
+              height: 25,
             ),
             buildRegistr()
           ],
@@ -224,7 +224,7 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Error"),
-          content: const Text('Please enter barcode and password!'),
+          content: Text(LocaleKeys.please.tr()),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new OutlinedButton(

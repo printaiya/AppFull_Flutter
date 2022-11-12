@@ -1,0 +1,95 @@
+import 'dart:io';
+
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_project/Presentation/Screens/NavBarPage/Ui/Nav_Bar.dart';
+import 'package:flutter_project/Presentation/Screens/ProfilePage/Profile_Screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'package:path/path.dart';
+
+import '../../../../model/user.dart';
+import '../widget/button_widget.dart';
+import '../widget/profile_widget.dart';
+import '../widget/textfield_widget.dart';
+import '../utils/user_preferences.dart';
+
+class EditProfilePage extends StatefulWidget {
+  @override
+  _EditProfilePageState createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  late User user;
+
+  @override
+  void initState() {
+    super.initState();
+
+    user = UserPreferences.getUser();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xff036B56),
+        title: Text('Edit'),
+      ),
+      backgroundColor: Colors.white,
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 32),
+        children: [
+          ProfileWidget(
+            imagePath: user.imagePath,
+            isEdit: true,
+            onClicked: () async {
+              final image = await ImagePicker()
+                  // ignore: deprecated_member_use
+                  .getImage(source: ImageSource.gallery);
+
+              if (image == null) return;
+
+              final directory = await getApplicationDocumentsDirectory();
+              final name = basename(image.path);
+              final imageFile = File('${directory.path}/$name');
+              final newImage = await File(image.path).copy(imageFile.path);
+
+              setState(() => user = user.copy(imagePath: newImage.path));
+            },
+          ),
+          const SizedBox(height: 24),
+          TextFieldWidget(
+            label: 'Name',
+            text: user.name,
+            onChanged: (name) => user = user.copy(name: name),
+          ),
+          const SizedBox(height: 24),
+          TextFieldWidget(
+            label: 'Email',
+            text: user.email,
+            onChanged: (email) => user = user.copy(email: email),
+          ),
+          const SizedBox(height: 24),
+          TextFieldWidget(
+            label: 'Info',
+            text: user.about,
+            maxLines: 5,
+            onChanged: (about) => user = user.copy(about: about),
+          ),
+          const SizedBox(height: 24),
+          ButtonWidget(
+            text: 'Save',
+            onClicked: () {
+              UserPreferences.setUser(user);
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => NavBar_Screen()),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}

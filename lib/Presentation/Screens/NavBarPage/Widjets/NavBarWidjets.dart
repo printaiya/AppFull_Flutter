@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../LikePage/Ui/Like_page.dart';
+import '../../MapPage/Map_Screen.dart';
 import '../../ProfilePage/Profile_Screen.dart';
 import '../../QrPage/Qr_Screen.dart';
 
@@ -24,7 +25,7 @@ Widget getSelectedWidget({required int index}) {
       break;
 
     default:
-      widget = const SettingsUI();
+      widget = ProfilePage();
       break;
   }
   return widget;

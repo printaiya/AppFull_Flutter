@@ -13,7 +13,7 @@ class Page1 extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            color: const Color(0xff065D58),
+            color: const Color(0xff036B56),
             child: const LikeButton(
               size: 40,
               animationDuration: Duration(milliseconds: 700),

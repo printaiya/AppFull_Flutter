@@ -39,22 +39,12 @@ class _QrScanState extends State<QrScan> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xff065D58),
+          backgroundColor: const Color(0xff036B56),
           title: const Text(
             "Scan QR",
             style: TextStyle(color: Colors.white),
           ),
-          actions: <Widget>[
-            Container(
-              height: 30,
-              width: 30,
-              margin: const EdgeInsets.only(right: 15),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xff065D58),
-              ),
-            ),
-          ],
+          actions: <Widget>[],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
