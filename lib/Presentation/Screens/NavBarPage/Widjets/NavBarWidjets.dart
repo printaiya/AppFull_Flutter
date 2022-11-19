@@ -1,12 +1,8 @@
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
-// ignore: file_names
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_project/Presentation/Screens/ProfilePage/Profile_Screen.dart';
 
 import '../../LikePage/Ui/Like_page.dart';
 import '../../MapPage/Map_Screen.dart';
-import '../../ProfilePage/Profile_Screen.dart';
 import '../../QrPage/Qr_Screen.dart';
 
 Widget getSelectedWidget({required int index}) {
@@ -21,11 +17,11 @@ Widget getSelectedWidget({required int index}) {
       break;
 
     case 2:
-      widget = Likes_Screen();
+      widget = MapSample();
       break;
 
     default:
-      widget = ProfilePage();
+      widget = HomeScreen();
       break;
   }
   return widget;

@@ -40,8 +40,8 @@ class _QrScanState extends State<QrScan> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xff036B56),
-          title: const Text(
-            "Scan QR",
+          title: Text(
+            LocaleKeys.scan.tr(),
             style: TextStyle(color: Colors.white),
           ),
           actions: <Widget>[],

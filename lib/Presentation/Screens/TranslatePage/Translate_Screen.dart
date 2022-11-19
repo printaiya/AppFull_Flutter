@@ -60,7 +60,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -73,7 +73,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
@@ -86,7 +86,7 @@ class _Translate_Screen extends State<Translate_Screen> {
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
             style: ElevatedButton.styleFrom(

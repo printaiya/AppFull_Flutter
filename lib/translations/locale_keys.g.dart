@@ -9,7 +9,20 @@ abstract class  LocaleKeys {
   static const register = 'register';
   static const sign = 'sign';
   static const name = 'name';
+  static const notsush = 'notsush';
   static const surname = 'surname';
+  static const firstname = 'firstname';
+  static const validname = 'validname';
+  static const sec = 'sec';
+  static const pemail = 'pemail';
+  static const vemail = 'vemail';
+  static const pass = 'pass';
+  static const vpass = 'vpass';
+  static const nopass = 'nopass';
+  static const appemail = 'appemail';
+  static const curpass = 'curpass';
+  static const not = 'not';
+  static const sucsess = 'sucsess';
   static const number = 'number';
   static const ret = 'ret';
   static const login = 'login';
@@ -22,7 +35,6 @@ abstract class  LocaleKeys {
   static const uib = 'uib';
   static const news = 'news';
   static const scan = 'scan';
-  static const profile = 'profile';
   static const full = 'full';
   static const email = 'email';
   static const location = 'location';
@@ -36,5 +48,9 @@ abstract class  LocaleKeys {
   static const always = 'always';
   static const night = 'night';
   static const signout = 'signout';
+  static const about = 'about';
+  static const edit = 'edit';
+  static const profile = 'profile';
+  static const info = 'info';
 
 }

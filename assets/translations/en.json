@@ -7,8 +7,20 @@
     "register": "Register",
     "sign": "Sign up",
     "name": "name",
+    "notsush": "User with this email doesn't exist.",
     "surname": "surname",
-    
+    "firstname": "First Name cannot be Empty",
+    "validname": "Enter Valid name(Min. 3 Character)",
+    "sec": "Second Name cannot be Empty",
+    "pemail": "Please Enter Your Email",
+    "vemail": "Please Enter a valid email",
+    "pass": "Password is required for login",
+    "vpass": "Enter Valid Password(Min. 6 Character)",
+    "nopass": "Password don't match",
+    "appemail": "Your email address appears to be malformed.",
+    "curpass": "Your password is wrong.",
+    "not": "User with this email doesn't exist.",
+    "sucsess": "Account created successfully :)",
     "number": "number",
     "ret": "return password",
     "login": "Login",
@@ -21,7 +33,7 @@
     "uib": "Welcome to UIB ",
     "news": "News Portal ",
     "scan": "Scan Qr ",
-    "profile": "Profile ",
+    
     "full": "Full Name ",
     "email": "E-mail ",
     
@@ -35,6 +47,12 @@
     "notifications": "Notification ",
     "always": "Always on ",
     "night": "Night Option ",
-    "signout": "Sign Out "
+    "signout": "Sign Out ",
+    "about" : "About",
+    "edit" : "Edit",
+    "profile": "Profile ",
+    "info": "Info "
+ 
+
 
 }

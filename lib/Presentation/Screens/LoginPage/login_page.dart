@@ -1,246 +1,207 @@
-// ignore_for_file: unnecessary_new
-
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project/Presentation/Screens/NavBarPage/Ui/Nav_Bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../buisness_logic/LoginAuth/auth_bloc.dart';
 import '../../../translations/locale_keys.g.dart';
-import '../../Declarations/Constants/constants.dart';
 import '../RegisterPage/Register_Screen.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final barcodeContoller = TextEditingController();
-  final userpasswordContoller = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
+  // form key
+  final _formKey = GlobalKey<FormState>();
 
-  late AuthBlocBloc authBloc;
+  // editing controller
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
 
-  @override
-  void initState() {
-    authBloc = AuthBlocBloc();
-    super.initState();
-  }
+  // firebase
+  final _auth = FirebaseAuth.instance;
 
-  @override
-  void dispose() {
-    barcodeContoller.dispose();
-    userpasswordContoller.dispose();
-    super.dispose();
-  }
+  // string for displaying the error Message
+  String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      home: Scaffold(
-        body: Column(
-          children: [
-            buildImageForm(),
-            const SizedBox(
-              height: 85,
-            ),
-            buildAuthBlocListener(),
-            const SizedBox(
-              height: 10,
-            ),
-            buildTextFormFiled(),
-            const SizedBox(
-              height: 25,
-            ),
-            buildInputFiled(),
-            const SizedBox(
-              height: 25,
-            ),
-            buildButton(),
-            const SizedBox(
-              height: 25,
-            ),
-            buildRegistr()
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildImageForm() {
-    return Container(
-      height: 300,
-      decoration: const BoxDecoration(
-        color: Color(0xff007A53),
-        gradient: LinearGradient(
-          // ignore: prefer_const_literals_to_create_immutables
-          colors: [
-            (Color(0xff007A53)),
-            Color(0xff007A53),
-            Color(0xff007A53),
-            Color(0xff017454),
-            Color(0xff036B56),
-            Color(0xff065D58)
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 50),
-            child: Image.asset(
-              'assets/images/lock_1.png',
-              height: 250,
-              width: 280,
-            ),
-          ),
-        ],
-      )),
-    );
-  }
-
-  Widget buildAuthBlocListener() {
-    return BlocConsumer(
-      bloc: authBloc,
-      listener: (context, state) {
-        if (state is LoadedAuthState) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NavBar_Screen()));
+    //email field
+    final emailField = TextFormField(
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return (LocaleKeys.email.tr());
         }
-        if (state is FailureLoginState) {
-          showError(context);
+        // reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          return (LocaleKeys.vemail.tr());
         }
+        return null;
       },
-      builder: (context, state) {
-        if (state is LoadingAuthState) {
-          return Align(
-            alignment: FractionalOffset.bottomCenter,
-            child: Container(
-              color: Colors.black.withOpacity(0.2),
-              child: const Center(
-                child: CircularProgressIndicator(
-                  color: Color(0xff036B56),
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        fillColor: Color(0xff036B56),
+        focusColor: Color(0xff036B56),
+        prefixIconColor: Color(0xff036B56),
+        prefixIcon: Icon(
+          Icons.mail,
+          color: Color(0xff036B56),
+        ),
+        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: LocaleKeys.email.tr(),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+    );
+
+    //password field
+    final passwordField = TextFormField(
+        autofocus: false,
+        controller: passwordController,
+        obscureText: true,
+        validator: (value) {
+          RegExp regex = new RegExp(r'^.{6,}$');
+          if (value!.isEmpty) {
+            return (LocaleKeys.pass.tr());
+          }
+          if (!regex.hasMatch(value)) {
+            return (LocaleKeys.vpass.tr());
+          }
+          return null;
+        },
+        onSaved: (value) {
+          passwordController.text = value!;
+        },
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          fillColor: Color(0xff036B56),
+          focusColor: Color(0xff036B56),
+          prefixIconColor: Color(0xff036B56),
+          prefixIcon: Icon(
+            Icons.vpn_key,
+            color: Color(0xff036B56),
+          ),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: LocaleKeys.password.tr(),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ));
+
+    final loginButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+      color: Color(0xff036B56),
+      child: MaterialButton(
+          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          minWidth: MediaQuery.of(context).size.width,
+          onPressed: () {
+            signIn(emailController.text, passwordController.text);
+          },
+          child: Text(
+            LocaleKeys.login.tr(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          )),
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(36.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                        height: 200,
+                        child: Image.asset(
+                          "assets/images/png_2.png",
+                          fit: BoxFit.contain,
+                        )),
+                    SizedBox(height: 45),
+                    emailField,
+                    SizedBox(height: 25),
+                    passwordField,
+                    SizedBox(height: 35),
+                    loginButton,
+                    SizedBox(height: 15),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(LocaleKeys.dont.tr()),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RegistrationScreen()));
+                            },
+                            child: Text(
+                              LocaleKeys.register.tr(),
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15),
+                            ),
+                          )
+                        ])
+                  ],
                 ),
               ),
             ),
-          );
-        }
-        return Container();
-      },
-    );
-  }
-
-  Widget buildTextFormFiled() {
-    return TextField(
-      controller: barcodeContoller,
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: LocaleKeys.barcode.tr(),
-        labelStyle: const TextStyle(color: Colors.grey),
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xff036B56)),
-            borderRadius: kBorderRadius),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xff036B56)),
-            borderRadius: BorderRadius.circular(13)),
-        icon: const Icon(Icons.person, color: Color(0xff036B56)),
-      ),
-    );
-  }
-
-  Widget buildInputFiled() {
-    return TextField(
-      controller: userpasswordContoller,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        labelText: LocaleKeys.password.tr(),
-        labelStyle: const TextStyle(color: Colors.grey),
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xff036B56)),
-            borderRadius: kBorderRadius),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Color(0xff036B56)),
-            borderRadius: BorderRadius.circular(13)),
-        icon: const Icon(Icons.key, color: Color(0xff036B56)),
-      ),
-    );
-  }
-
-  Widget buildButton() {
-    return OutlinedButton(
-      onPressed: () {
-        String barcode = barcodeContoller.text;
-        String password = userpasswordContoller.text;
-        authBloc.add(GetAuthEvent(barcode, password));
-
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NavBar_Screen(),
-            ));
-      },
-      style: OutlinedButton.styleFrom(backgroundColor: const Color(0xff036B56)),
-      child: Text(
-        LocaleKeys.login.tr(),
-        style: const TextStyle(color: Colors.white, fontSize: 18),
-      ),
-    );
-  }
-
-  Widget buildRegistr() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Text(LocaleKeys.dont.tr()),
-      GestureDetector(
-        child: Text(
-          LocaleKeys.register.tr(),
-          style: const TextStyle(color: Colors.blueGrey),
+          ),
         ),
-        onTap: () {
-          // Write Tap Code Here.
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Register_Screen(),
-              ));
-        },
-      )
-    ]);
+      ),
+    );
   }
 
-  Future<void> showError(BuildContext context) async {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Error"),
-          content: Text(LocaleKeys.please.tr()),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new OutlinedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: OutlinedButton.styleFrom(
-                  backgroundColor: const Color(0xff036B56)),
-              child: new Text(
-                LocaleKeys.cancel.tr(),
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        );
-      },
-    );
+  // login function
+  void signIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+                  Fluttertoast.showToast(msg: LocaleKeys.sucsess.tr()),
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => NavBar_Screen())),
+                });
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = LocaleKeys.appemail.tr();
+
+            break;
+          case "wrong-password":
+            errorMessage = LocaleKeys.curpass.tr();
+            break;
+          case "user-not-found":
+            errorMessage = LocaleKeys.notsush.tr();
+            break;
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        print(error.code);
+      }
+    }
   }
 }

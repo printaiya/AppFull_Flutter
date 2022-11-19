@@ -4,7 +4,7 @@ part of 'auth_bloc.dart';
 abstract class AuthEvent {}
 
 class GetAuthEvent extends AuthEvent {
-  final String barcode;
+  final String email;
   final String password;
-  GetAuthEvent(this.barcode, this.password);
+  GetAuthEvent(this.email, this.password);
 }

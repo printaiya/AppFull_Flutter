@@ -14,9 +14,9 @@ class AuthRepository {
     emit(LoadingAuthState());
     try {
       response = await http.post(
-        Uri.parse("http://localhost:3000/rest/visitor/register"),
+        Uri.parse("http://10.0.2.2:3000/users/ai"),
         body: convert.jsonEncode({
-          'Barcode': event.barcode,
+          'Barcode': event.email,
           'Password': event.password,
         }),
       );

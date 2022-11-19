@@ -9,6 +9,7 @@ import '../Widjets/NavBarWidjets.dart';
 // ignore: camel_case_types
 class NavBar_Screen extends StatefulWidget {
   const NavBar_Screen({Key? key}) : super(key: key);
+
   @override
   // ignore: library_private_types_in_public_api
   _NavBar_Screen createState() => _NavBar_Screen();
@@ -20,6 +21,7 @@ class _NavBar_Screen extends State<NavBar_Screen> {
     Icon(Icons.favorite),
     Icon(Icons.qr_code),
     Icon(Icons.map),
+    Icon(Icons.home),
     Icon(Icons.person),
   ];
   int index = 0;
