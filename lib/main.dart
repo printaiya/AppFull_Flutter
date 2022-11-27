@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 
-import 'Presentation/Screens/Splash_Page/Splash_Screen.dart';
+import 'features/app/ui/pages/splash_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
