@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/features/app/ui/pages/login_page.dart';
 import 'package:flutter_project/model/user_model.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../translations/locale_keys.g.dart';
 
@@ -45,6 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              Lottie.network(
+                  'https://assets6.lottiefiles.com/packages/lf20_ybiszbil.json'),
               Text(
                 LocaleKeys.welcome.tr(),
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

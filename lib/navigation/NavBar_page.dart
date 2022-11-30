@@ -22,7 +22,6 @@ class _NavBar_Screen extends State<NavBar_Screen> {
     Icon(Icons.qr_code),
     Icon(Icons.map),
     Icon(Icons.newspaper),
-    Icon(Icons.animation),
     Icon(Icons.person),
   ];
   int index = 0;
